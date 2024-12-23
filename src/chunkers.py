@@ -43,7 +43,7 @@ class SemanticChunker_langchain:
 
         chunks= text_splitter.create_documents(
             texts=texts,
-            metadata= {"source": source}
+            metadatas= [{"source": source}]*len(texts)
             )
         return chunks
 
