@@ -8,15 +8,18 @@ parser.add_argument(
 
 parser.add_argument(
     '--parser_name', 
-    help= '')
+    help='Specify the name of the parser to use for document processing. Possible values: ["LlamaParse", "pymupdf4llm"]'
+)
 
 parser.add_argument(
     '--chunking_strategy', 
-    help= '')
+    help='Define the chunking strategy to apply when processing documents. Possible values: ["semantic", "agentic"]'
+)
 
 parser.add_argument(
     '--retrieval_strategy', 
-    help= '')
+    help='Specify the retrieval strategy for querying indexed documents. Possible values:["semantic", "agentic"]'
+)
 
 def main():
     args = parser.parse_args()
