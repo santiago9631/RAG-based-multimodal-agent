@@ -15,15 +15,20 @@ Traditional RAG systems primarily rely on static chunking and retrieval mechanis
 ### Features
 **- chunking (Semantic or Agentic):** \
 Semantic chunker split documents into semantically coherent, meaningful chunks. 
-Agentic chunker goes further and simulates human judgment of text segmentation: start at the beginning of a document, group sentences into chunks based on semantic similarity, and continue this process iteratively until the entire document is segmented.
+Agentic chunker goes further and simulates human judgment of text segmentation: start at the beginning of a document, group sentences based on context and topic, and continue this process iteratively until the entire document is segmented. \
+(For more info: [Agentic Chunking: Enhancing RAG Answers for Completeness and Accuracy](https://gleen.ai/blog/agentic-chunking-enhancing-rag-answers-for-completeness-and-accuracy/)).\
 **- Image and table detection:** \
-Detecting images and tables using PyMuPDF and img2table respectively.
-- Summarizing images and tables: \
-Using a multimodal LLM (eg. gemini-1.5-flash), create a text description of each image and table.
+Detecting images and tables using PyMuPDF and img2table respectively.\
+**- Summarizing images and tables:** \
+Using a multimodal LLM (eg. gemini-1.5-flash), create a text description of each image and table.\
 **- Embedding:** \
 Embed chunks, images and tables summaries using "text-embedding-004" model.
 **- Retrieval (Semantic or Agentic):** \
-For a given query: semantic retrieval focuses on embedding-based similarity searches to retrieve information. Agentic retrieval includes 4 steps, following ReAct process: (1). Query rephrasing, with regards to chat history (2). semantic retrieval (3). Assess whether the retrieved documents are enough to answer the query (4).Accordingly, either use the retrieved documents or web search engine to generate a relevant, sufficient and factual answer.  
+For a given query: semantic retrieval focuses on embedding-based similarity searches to retrieve information. Agentic retrieval includes 4 steps, following ReAct process: \
+(1). Query rephrasing, with regards to chat history \
+(2). semantic retrieval \
+(3). Assess whether the retrieved documents are relevant and sufficient to answer the query \
+(4). Accordingly, either use the retrieved documents or web search engine to generate a relevant, sufficient and factual answer.  
 
 ### Installation
 To run the app locally, the following steps are necessary:
