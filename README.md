@@ -22,7 +22,7 @@ Detecting images and tables using PyMuPDF and img2table respectively.\
 **- Summarizing images and tables:** \
 Using a multimodal LLM (eg. gemini-1.5-flash), create a text description of each image and table.\
 **- Embedding:** \
-Embed chunks, images and tables summaries using "text-embedding-004" model.
+Embed chunks, images and tables summaries using "text-embedding-004" model.\
 **- Retrieval (Semantic or Agentic):** \
 For a given query: semantic retrieval focuses on embedding-based similarity searches to retrieve information. Agentic retrieval includes 4 steps, following ReAct process: \
 (1). Query rephrasing, with regards to chat history \
