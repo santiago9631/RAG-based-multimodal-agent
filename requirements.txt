@@ -1,6 +1,7 @@
-fitz==0.0.1.dev2
-img2table==1.4.0
+chromadb==0.5.23
+img2table[easyocr]==1.4.0
 langchain==0.3.13
+langchain-chroma==0.1.4
 langchain_core==0.3.28
 langchain_experimental==0.3.4
 langchain_google_genai==2.0.7
@@ -8,5 +9,6 @@ llama_parse==0.5.18
 opencv_contrib_python_headless==4.10.0.84
 opencv_python_headless==4.10.0.84
 pymupdf4llm==0.0.17
+PyMuPDF==1.24.14
 python-dotenv==1.0.1
 uuid6==2024.7.10
