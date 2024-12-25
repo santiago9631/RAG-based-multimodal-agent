@@ -29,8 +29,8 @@ For a given query: semantic retrieval focuses on embedding-based similarity sear
 To run the app locally, the following steps are necessary:
 - Clone The repo:
 ```bash
-git clone https://github.com/AhmedAl93/multimodal-semantic-RAG.git
-cd multimodal-semantic-RAG/
+git clone https://github.com/AhmedAl93/multimodal-agentic-RAG.git
+cd multimodal-agentic-RAG/
 ```
 - Install the required python packages:
 ```bash
