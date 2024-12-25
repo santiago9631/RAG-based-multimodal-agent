@@ -3,7 +3,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from typing import List
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain import hub
-# from langchain_google_genai import ChatGoogleGenerativeAI
 import time, logging, uuid6
 from langchain_core.documents import Document
 from dotenv import find_dotenv, load_dotenv
