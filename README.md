@@ -1,77 +1,149 @@
-# Multimodal Agentic RAG
+# RAG-based Multimodal Agent
 
-### Table of contents
-* [Overview](###Overview)
-* [Features](###Features)
-* [Installation](###Installation)
-* [Usage](###Usage)
-* [Perspectives](###Perspectives)
+A sophisticated Retrieval-Augmented Generation (RAG) system that combines advanced document processing with intelligent retrieval mechanisms to deliver accurate, context-aware responses from multimodal data sources.
 
-### Overview
-Retrieval-Augmented Generation (RAG) is an advanced AI framework that combines the retrieval capabilities of information retrieval systems (e.g., encoders and vector databases) with the generative power of large language models (LLMs). By leveraging external knowledge sources, such as user-provided documents, RAG delivers accurate, context-aware answers and generates factual, coherent responses.
+## Table of Contents
 
-Traditional RAG systems primarily rely on static chunking and retrieval mechanisms, which may struggle to adapt dynamically to complex, multimodal data. To address this limitation, this project introduces an agentic approach to chunking and retrieval, adding significant value to the RAG process.
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Features
-**- chunking (Semantic or Agentic):** \
-Semantic chunker split documents into semantically coherent, meaningful chunks. 
-Agentic chunker goes further and simulates human judgment of text segmentation: start at the beginning of a document, group sentences based on context and topic, and continue this process iteratively until the entire document is segmented. \
-(For more info: [Agentic Chunking: Enhancing RAG Answers for Completeness and Accuracy](https://gleen.ai/blog/agentic-chunking-enhancing-rag-answers-for-completeness-and-accuracy/)).\
-**- Image and table detection:** \
-Detecting images and tables using PyMuPDF and img2table respectively.\
-**- Summarizing images and tables:** \
-Using a multimodal LLM (eg. gemini-1.5-flash), create a text description of each image and table.\
-**- Embedding:** \
-Embed chunks, images and tables summaries using "text-embedding-004" model.\
-**- Retrieval (Semantic or Agentic):** \
-For a given query: semantic retrieval focuses on embedding-based similarity searches to retrieve information. Agentic retrieval includes 4 steps, following ReAct process: \
-(1). Query rephrasing, with regards to chat history \
-(2). semantic retrieval \
-(3). Assess whether the retrieved documents are relevant and sufficient to answer the query \
-(4). Accordingly, either use the retrieved documents or web search engine to generate a relevant, sufficient and factual answer.  
+## Overview
 
-### Installation
-To run the app locally, the following steps are necessary:
-- Clone The repo:
-```bash
-git clone https://github.com/AhmedAl93/multimodal-agentic-RAG.git
-cd multimodal-agentic-RAG/
-```
-- Install the required python packages:
-```bash
-pip install -r requirements.txt
-```
-- Set up the environment variables in the .env file:
-```bash
-LLAMA_CLOUD_API_KEY=<Your LLAMACLOUD API KEY>
-GOOGLE_API_KEY=<Your Google API KEY>
-TAVILY_API_KEY=<Your Tavily API KEY>
-```
+This project implements an advanced RAG framework that enhances traditional retrieval-augmented generation by introducing **agentic approaches** to both document chunking and information retrieval. Unlike conventional RAG systems that rely on static processing methods, this solution dynamically adapts to complex, multimodal data through intelligent decision-making processes.
 
-### Usage
-1. Process input document(s):
+### Key Innovations
 
-Run the following command:
+- **Agentic Chunking**: Simulates human-like document segmentation for optimal content organization
+- **Multimodal Processing**: Handles text, images, and tables with specialized extraction and summarization
+- **Intelligent Retrieval**: Implements ReAct-based reasoning for contextually appropriate information retrieval
+- **Dynamic Adaptation**: Automatically adjusts processing strategies based on content complexity
+
+## Key Features
+
+### 📄 Advanced Document Processing
+
+- **Semantic Chunking**: Splits documents into semantically coherent, meaningful segments
+- **Agentic Chunking**: Employs iterative, context-aware segmentation that mimics human judgment
+  - Groups sentences based on topic and context
+  - Processes documents iteratively from start to finish
+  - Optimizes chunk boundaries for maximum semantic coherence
+  - [Learn more about Agentic Chunking](https://gleen.ai/blog/agentic-chunking-enhancing-rag-answers-for-completeness-and-accuracy/)
+
+### 🖼️ Multimodal Content Handling
+
+- **Image Detection & Analysis**: Automatically identifies and processes images using PyMuPDF
+- **Table Extraction**: Detects and extracts tabular data using img2table
+- **Content Summarization**: Generates text descriptions of images and tables using Gemini-1.5-Flash
+- **Unified Embedding**: Creates embeddings for all content types using text-embedding-004
+
+### 🔍 Intelligent Retrieval Systems
+
+#### Semantic Retrieval
+- Embedding-based similarity search
+- Vector database integration
+- Context-aware matching
+
+#### Agentic Retrieval (ReAct Process)
+1. **Query Rephrasing**: Enhances queries based on chat history context
+2. **Semantic Retrieval**: Performs initial information gathering
+3. **Relevance Assessment**: Evaluates retrieved content for query relevance and completeness
+4. **Dynamic Response**: Generates answers using retrieved documents or web search as needed
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- Git
+
+### Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/santiago9631/RAG-based-multimodal-agent.git
+   cd RAG-based-multimodal-agent
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure environment variables**
+   
+   Create a `.env` file in the project root with the following variables:
+   ```bash
+   LLAMA_CLOUD_API_KEY=your_llamacloud_api_key_here
+   GOOGLE_API_KEY=your_google_api_key_here
+   TAVILY_API_KEY=your_tavily_api_key_here
+   ```
+
+## Usage
+
+### Document Processing
+
+Process your documents using the following command:
+
 ```bash
 python main.py --InputPath <path> --parser_name <parser> --chunking_strategy <chunking> --retrieval_strategy <retrieval>
 ```
-Here are more details about the inputs:
+
+#### Parameters
+
+| Parameter | Description | Options |
+|-----------|-------------|---------|
+| `--InputPath` | Path to directory containing files or single file path | Any valid file/directory path |
+| `--parser_name` | Document parser to use | `LlamaParse`, `pymupdf4llm` |
+| `--chunking_strategy` | Document chunking approach | `semantic`, `agentic` |
+| `--retrieval_strategy` | Information retrieval method | `semantic`, `agentic` |
+
+#### Example Usage
+
 ```bash
---InputPath: 'Directory path containing files to be processed, or a single file path'
---parser_name: 'Specify the name of the parser to use for document processing. Possible values: ["LlamaParse", "pymupdf4llm"]'
---chunking_strategy: 'Define the chunking strategy to apply when processing documents. Possible values: ["semantic", "agentic"]'
---retrieval_strategy: 'Specify the retrieval strategy for querying indexed documents. Possible values:["semantic", "agentic"]'
+# Process a single PDF with agentic chunking and retrieval
+python main.py --InputPath document.pdf --parser_name LlamaParse --chunking_strategy agentic --retrieval_strategy agentic
+
+# Process multiple PDFs in a directory
+python main.py --InputPath ./documents/ --parser_name pymupdf4llm --chunking_strategy semantic --retrieval_strategy semantic
 ```
-Currently, only PDF files are supported. So if the input directory contains x PDFs, x files will be processed.
 
-2. Provide queries:
-In the terminal, you can provide multiple queries and get relevant answers.
+### Interactive Querying
 
-### Perspectives
-In the near future, I plan to work on the following features:
-- Support other file types than PDF
-- Performance Evaluation for different chunking and retrieval strategies
-- Support open-source LLMs
-- Support other Vector DBs providers
-- Assess and test new concepts: GraphRAG, ... 
-- Cloud deployment
+After processing documents, the system provides an interactive terminal interface for querying:
+
+1. Enter your questions in the terminal
+2. Receive contextually relevant answers based on processed content
+3. Ask follow-up questions for deeper exploration
+
+**Note**: Currently supports PDF files only. All PDF files in the input directory will be processed automatically.
+
+## API Reference
+
+### Supported File Formats
+- **PDF**: Full support with text, image, and table extraction
+
+### Parser Options
+- **LlamaParse**: Advanced PDF parsing with enhanced structure recognition
+- **pymupdf4llm**: Lightweight PDF processing optimized for LLM integration
+
+### Chunking Strategies
+- **Semantic**: Traditional semantic boundary detection
+- **Agentic**: Human-like iterative segmentation process
+
+### Retrieval Strategies
+- **Semantic**: Vector similarity-based retrieval
+- **Agentic**: ReAct-based intelligent retrieval with dynamic adaptation
+
+## Contributing
+
+We welcome contributions! Please feel free to submit issues, feature requests, or pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
