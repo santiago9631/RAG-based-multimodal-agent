@@ -143,6 +143,12 @@ After processing documents, the system provides an interactive terminal interfac
 
 We welcome contributions! Please feel free to submit issues, feature requests, or pull requests.
 
+## Workflow Diagram
+
+The following diagram illustrates the complete workflow of the RAG-based multimodal agent:
+
+![RAG-based Multimodal Agent Workflow](./diagram.png)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
